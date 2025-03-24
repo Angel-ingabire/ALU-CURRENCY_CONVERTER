@@ -71,3 +71,65 @@ button:hover {
     font-weight: bold;
     color: #4CAF50;
 }
+
+/* Search and Sort Section */
+.search-sort {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+    text-align: center;
+}
+
+#currency-search {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+#sort-button {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 18px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+    max-width: 400px;
+    margin: 10px auto;
+}
+
+#sort-button:hover {
+    background-color: #45a049;
+}
+
+/* Currency List Section */
+.currency-list {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#currency-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+#currency-list li {
+    font-size: 16px;
+    padding: 5px;
+    background-color: #f9f9f9;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#currency-list li:hover {
+    background-color: #f0f0f0;
+}
