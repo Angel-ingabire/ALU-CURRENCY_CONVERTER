@@ -34,3 +34,13 @@ Before you can run the project locally, you’ll need the following installed on
    
    ```bash
    git clone https://github.com/Angel-ingabire/ALU-CURRENCY_CONVERTER.git
+   # API and Resource Attribution
+
+This project utilizes the following resources:
+
+### 1. **ExchangeRate API**:
+   - **Provider**: [ExchangeRate-API](https://www.exchangerate-api.com/)
+   - **Purpose**: This API is used to fetch live exchange rates for currency conversion. It provides up-to-date and accurate exchange rates for various currencies.
+   - **Usage**: The API is used in the `script.js` file to fetch the exchange rates for conversion.
+
+   You can find more about the API here: [https://www.exchangerate-api.com/](https://www.exchangerate-api.com/).
