@@ -110,7 +110,9 @@ The application includes error handling to manage issues such as API downtime or
 
 User Feedback: Users will see a clear error message if the API call fails.
 Usage Example
-Currency Conversion:
+
+
+CURRENCY CONVERSIN:
 
 Select the base and target currencies.
 
