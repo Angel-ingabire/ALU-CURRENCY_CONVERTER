@@ -38,11 +38,24 @@ label {
     font-size: 18px;
 }
 
-select, input {
+.dropdown-search {
+    position: relative;
+}
+
+.dropdown-search input[type="search"] {
     padding: 10px;
     font-size: 16px;
     border-radius: 5px;
     border: 1px solid #ccc;
+    width: 100%;
+}
+
+select {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
 }
 
 button {
@@ -109,27 +122,65 @@ button:hover {
     background-color: #45a049;
 }
 
-/* Currency List Section */
-.currency-list {
-    margin-top: 20px;
-    text-align: center;
+/* Mobile Responsive Styling */
+@media (max-width: 768px) {
+    .container {
+        margin: 20px auto;
+        padding: 15px;
+    }
+
+    .form {
+        gap: 10px;
+    }
+
+    label {
+        font-size: 16px;
+    }
+
+    .dropdown-search input[type="search"], select {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    button {
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    #currency-search {
+        max-width: 300px;
+    }
+
+    #sort-button {
+        max-width: 300px;
+    }
 }
 
-#currency-list {
-    list-style-type: none;
-    padding: 0;
-}
+@media (max-width: 480px) {
+    .container {
+        margin: 10px auto;
+        padding: 10px;
+    }
 
-#currency-list li {
-    font-size: 16px;
-    padding: 5px;
-    background-color: #f9f9f9;
-    margin-bottom: 5px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
+    .form {
+        gap: 5px;
+    }
 
-#currency-list li:hover {
-    background-color: #f0f0f0;
+    label {
+        font-size: 14px;
+    }
+
+    .dropdown-search input[type="search"], select {
+        padding: 6px;
+        font-size: 12px;
+    }
+
+    button {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    #currency-search, #sort-button {
+        max-width: 200px;
+    }
 }

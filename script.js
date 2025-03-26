@@ -15,7 +15,6 @@ async function fetchCurrencies() {
         // Populate the dropdowns
         const fromCurrencySelect = document.getElementById('from-currency');
         const toCurrencySelect = document.getElementById('to-currency');
-        const currencyList = document.getElementById('currency-list');  // Assuming a <ul> or <ol> with id "currency-list"
 
         currencies.forEach(currency => {
             const option1 = document.createElement('option');
@@ -27,17 +26,10 @@ async function fetchCurrencies() {
             option2.value = currency;
             option2.textContent = currency;
             toCurrencySelect.appendChild(option2);
-
-            // Add currency to a list for filtering and sorting
-            const listItem = document.createElement('li');
-            listItem.textContent = currency;
-            currencyList.appendChild(listItem);
         });
 
         // Enable sorting and searching
-        enableSorting(currencies);
-        enableSearch(currencies);
-
+        enableDropdownSearch(currencies);
     } catch (error) {
         console.error('Error fetching currencies:', error);
         alert(error.message);
@@ -77,38 +69,40 @@ async function convertCurrency() {
     }
 }
 
-// Enable sorting of currency list
-function enableSorting(currencies) {
-    const sortButton = document.getElementById('sort-button');  // Assuming there's a button to trigger sorting
-    sortButton.addEventListener('click', () => {
-        const sortedCurrencies = [...currencies].sort();
-        const currencyList = document.getElementById('currency-list');
-        currencyList.innerHTML = '';  // Clear existing list
+// Enable search functionality for dropdowns
+function enableDropdownSearch(currencies) {
+    const fromSearchInput = document.getElementById('from-search');
+    const toSearchInput = document.getElementById('to-search');
+    const fromCurrencySelect = document.getElementById('from-currency');
+    const toCurrencySelect = document.getElementById('to-currency');
 
-        sortedCurrencies.forEach(currency => {
-            const listItem = document.createElement('li');
-            listItem.textContent = currency;
-            currencyList.appendChild(listItem);
-        });
-    });
-}
-
-// Enable search functionality for currencies
-function enableSearch(currencies) {
-    const searchInput = document.getElementById('currency-search');  // Assuming there's an input for search
-    searchInput.addEventListener('input', (e) => {
+    fromSearchInput.addEventListener('input', (e) => {
         const searchTerm = e.target.value.toLowerCase();
         const filteredCurrencies = currencies.filter(currency => currency.toLowerCase().includes(searchTerm));
-        const currencyList = document.getElementById('currency-list');
-        currencyList.innerHTML = '';  // Clear existing list
+        fromCurrencySelect.innerHTML = '';  
 
         filteredCurrencies.forEach(currency => {
-            const listItem = document.createElement('li');
-            listItem.textContent = currency;
-            currencyList.appendChild(listItem);
+            const option = document.createElement('option');
+            option.value = currency;
+            option.textContent = currency;
+            fromCurrencySelect.appendChild(option);
+        });
+    });
+
+    toSearchInput.addEventListener('input', (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        const filteredCurrencies = currencies.filter(currency => currency.toLowerCase().includes(searchTerm));
+        toCurrencySelect.innerHTML = '';  
+
+        filteredCurrencies.forEach(currency => {
+            const option = document.createElement('option');
+            option.value = currency;
+            option.textContent = currency;
+            toCurrencySelect.appendChild(option);
         });
     });
 }
 
 // Load currencies when the page is ready
 fetchCurrencies();
+
