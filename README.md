@@ -44,3 +44,88 @@ This project utilizes the following resources:
    - **Usage**: The API is used in the `script.js` file to fetch the exchange rates for conversion.
 
    You can find more about the API here: [https://www.exchangerate-api.com/](https://www.exchangerate-api.com/).
+Deployment Instructions
+This project has been deployed across two web servers and a load balancer to ensure high availability and scalability.
+
+Web Server Setup (web-01 & web-02)
+sudo git clone https://github.com/Angel-ingabire/ALU-CURRENCY_CONVERTER.git /var/www/html/myapp
+Set File Permissions:
+sudo chown -R www-data:www-data /var/www/html/myapp
+sudo chmod -R 755 /var/www/html/myapp
+Create a configuration file at /etc/nginx/sites-available/myapp with the following;
+server {
+    listen 80;
+    server_name 54.175.182.240;
+
+    root /var/www/html/myapp;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
+Enable the configuration:
+
+
+Copy
+Edit
+sudo ln -s /etc/nginx/sites-available/myapp /etc/nginx/sites-enabled/
+sudo rm /etc/nginx/sites-enabled/default
+sudo systemctl restart nginx
+Load Balancer Setup (lb-01)
+sudo apt update && sudo apt install nginx -y
+
+Create Load Balancer Configuration:
+upstream backend_servers {
+    server 44.210.130.80;  # web-01 IP
+    server 44.210.130.81;  # web-02 IP
+}
+
+server {
+    listen 80;
+    server_name 44.201.211.3;  # Load balancer IP or your domain name
+
+    location / {
+        proxy_pass http://backend_servers;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}
+Enable and Restart:
+
+
+Copy
+Edit
+sudo ln -s /etc/nginx/sites-available/loadbalancer /etc/nginx/sites-enabled/
+sudo rm /etc/nginx/sites-enabled/default
+sudo nginx -t
+sudo systemctl restart nginx
+Test the Load Balancer:
+
+Visit http://44.201.211.3 in a browser and verify that traffic is being distributed between the two web servers.
+
+Error Handling & Troubleshooting
+The application includes error handling to manage issues such as API downtime or invalid responses.
+
+User Feedback: Users will see a clear error message if the API call fails.
+Usage Example
+Currency Conversion:
+
+Select the base and target currencies.
+
+Enter the amount to convert.
+
+View the converted result instantly.
+
+Search and Sort:
+
+Use the search feature to find currencies by name or code.
+
+Click on sort options to order the list alphabetically.
+
+Demo Video
+Watch the demo video that showcases the application running locally and on the deployed servers with the load balancer:
+
+
+
