@@ -112,7 +112,7 @@ User Feedback: Users will see a clear error message if the API call fails.
 Usage Example
 
 
-CURRENCY CONVERSIN:
+CURRENCY CONVERSION:
 
 Select the base and target currencies.
 
