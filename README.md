@@ -128,6 +128,6 @@ Click on sort options to order the list alphabetically.
 
 Demo Video
 Watch the demo video that showcases the application running locally and on the deployed servers with the load balancer:
-
+https://youtu.be/IU3cvAFkVaU
 
 
